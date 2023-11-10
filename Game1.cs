@@ -8,6 +8,7 @@ namespace Scaled_Images
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        Texture2D circle, rectangle;
 
         public Game1()
         {
@@ -19,13 +20,18 @@ namespace Scaled_Images
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            _graphics.PreferredBackBufferWidth = 800;
+            _graphics.PreferredBackBufferHeight = 500;
+            _graphics.ApplyChanges();
             base.Initialize();
+
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            circle = Content.Load<Texture2D>("circle");
+            rectangle = Content.Load<Texture2D>("rectangle");
 
             // TODO: use this.Content to load your game content here
         }
@@ -43,7 +49,13 @@ namespace Scaled_Images
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+            _spriteBatch.Begin();
 
+            _spriteBatch.Draw(circle, new Vector2(80, 10), Color.White);
+            _spriteBatch.Draw(rectangle, new Rectangle(100, 100, 40, 40), Color.White);
+
+
+            _spriteBatch.End(); 
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
